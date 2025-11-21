@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 25px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .form-container h3 {
+        text-align: center;
+        font-size: 26px;
+        margin-bottom: 25px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        display: block;
+        color: #444;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #d3d3d3;
+        border-radius: 6px;
+        font-size: 15px;
+    }
+
+    textarea {
+        height: 120px;
+    }
+
+    .btn-container {
+        margin-top: 15px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-save {
+        padding: 8px 20px;
+        background-color: #28a745;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .btn-cancel {
+        padding: 8px 20px;
+        background-color: #6c757d;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .btn-save:hover { background-color: #218838; }
+    .btn-cancel:hover { background-color: #5a6268; }
+
+</style>
+
+<div class="form-container">
+    <h3>Add Expense</h3>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Description:</label>
+            {{ form.description }}
+        </div>
+
+        <div class="form-group">
+            <label>Amount:</label>
+            {{ form.amount }}
+        </div>
+
+        <div class="form-group">
+            <label>Date:</label>
+            {{ form.date }}
+        </div>
+
+        <div class="form-group">
+            <label>Category:</label>
+            {{ form.category }}
+        </div>
+
+        <div class="form-group">
+            <label>Notes:</label>
+            {{ form.notes }}
+        </div>
+
+        <div class="btn-container">
+            <button type="submit" class="btn-save">Save</button>
+            <a href="{% url 'expense_list' %}" class="btn-cancel">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
